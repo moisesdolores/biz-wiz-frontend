@@ -1,14 +1,17 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import {Navbar, Nav} from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Navbar, Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home.js";
 import SignUp from "./components/SignUp.js";
 import SignIn from "./components/SignIn.js";
 // import PersonList from "./components/API.js";
 // import * from 'react-bootstrap'
 
-import './App.css';
+import "./App.css";
+import SearchBusiness from "./components/Search.js";
+import BusinessPage from "./components/Business.js";
+import NavbarNew from "./components/NavbarNew.js";
 
 //landing page
 function App() {
@@ -16,17 +19,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Navbar bg="dark" expand="lg">
-          <Navbar.Brand href="#home"><optionHeading>Biz Wiz</optionHeading></Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav class="mr-auto">
-              <a><Link to="/SearchBusinesses"><landingOptions>Home</landingOptions></Link></a>
-              <a><Link to="/register"><landingOptions>Sign up</landingOptions></Link></a>
-              <a><Link to="/login"><landingOptions>Sign In</landingOptions></Link></a>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+        <NavbarNew />
 
         <Switch>
           <Route path="/register">
@@ -38,12 +31,13 @@ function App() {
           <Route path="/">
             <Home />
           </Route>
+          <Route path="/search">
+            <BusinessPage />
+          </Route>
         </Switch>
-
       </Router>
     </div>
   );
 }
-
 
 export default App;
