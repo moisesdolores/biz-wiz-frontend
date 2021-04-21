@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   makeStyles,
   AppBar,
@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavbarNew() {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
   return (
     <div className={classes.rootDiv}>
       <AppBar position="fixed" color="primary" className="nav">
@@ -82,7 +80,6 @@ export default function NavbarNew() {
           </Button>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}></Drawer>
     </div>
   );
 }
