@@ -12,7 +12,6 @@ import {
   InputAdornment,
   Typography,
   Link,
-  Grow,
   Collapse,
 } from "@material-ui/core";
 import { AccountCircle, LockRounded } from "@material-ui/icons";
