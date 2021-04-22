@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
     marginLeft: 70,
   },
+  signInIcons: {
+    paddingBottom: "14px",
+  },
 }));
 function SignIn() {
   const [businessLogin, setBusinessLogin] = useFormFields({
@@ -74,7 +77,7 @@ function SignIn() {
   let isSignedIn =
     window.localStorage.getItem("token") in [null, ""] ? true : false;
   isSignedIn = false; //window.localStorage.getItem('token') in [null, ''] ? true : false;
-  if (isSignedIn == true) {
+  if (isSignedIn === false) {
     console.log(window.localStorage.getItem("token"));
     return (
       <div>
@@ -103,7 +106,10 @@ function SignIn() {
                   placeholder="Enter Username"
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment
+                        className={classes.signInIcons}
+                        position="start"
+                      >
                         <AccountCircle />
                       </InputAdornment>
                     ),
@@ -117,7 +123,10 @@ function SignIn() {
                   placeholder="Enter Password"
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment
+                        className={classes.signInIcons}
+                        position="start"
+                      >
                         <LockRounded />
                       </InputAdornment>
                     ),

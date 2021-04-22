@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
-import { Button, Fade, Grow, makeStyles } from "@material-ui/core";
+  Button,
+  Fade,
+  Grow,
+  makeStyles,
+  TextField,
+  InputAdornment,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import SearchBusiness from "./Search.js";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -18,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   logoContainer: {
     display: "flex",
     justifyContent: "center",
+  },
+  MuiTextField: {
+    textDecoration: "none",
   },
   searchBar: {
     "&:hover": {
@@ -36,9 +38,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "40px auto 20px",
     width: "482px",
     outline: "none",
-    textIndent: "40px",
+    textIndent: "30px",
     textDecoration: "none",
   },
+
   submitButton: {
     "&:hover": {
       borderColor: "#adcaec",
@@ -55,14 +58,14 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "0",
     borderRadius: "30px",
   },
-  inputWithSearchIcon: {
-    position: "relative",
-  },
-  searchIcon: {
-    position: "absolute",
-    left: "540px",
-    top: "11px",
-  },
+  // inputWithSearchIcon: {
+  //   position: "relative",
+  // },
+  // searchIcon: {
+  //   position: "absolute",
+  //   left: "540px",
+  //   top: "61px",
+  // },
 }));
 
 export default function Home() {
@@ -84,10 +87,8 @@ export default function Home() {
       </Fade>
       <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}>
         <form action="">
-          <div className={classes.inputWithSearchIcon}>
-            <SearchIcon className={classes.searchIcon} />
-            <input className={classes.searchBar} type="text" />
-          </div>
+          <input className={classes.searchBar} type="text" />
+
           <Button
             type="submit"
             className={classes.submitButton}
@@ -99,9 +100,6 @@ export default function Home() {
           </Button>
         </form>
       </Grow>
-      <Route path="/search">
-        <SearchBusiness />
-      </Route>
     </div>
   );
 }
