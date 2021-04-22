@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Fade, Grow, makeStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
+
 const useStyles = makeStyles((theme) => ({
   logo: {
     width: "400px",
@@ -85,7 +86,7 @@ export default function Home() {
             variant="contained"
             size="small"
           >
-            Search
+          Search
           </Button>
         </form>
       </Grow>

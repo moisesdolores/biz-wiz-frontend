@@ -69,8 +69,12 @@ function SignIn() {
 
   // let isSignedIn = window.localStorage.getItem('token') in [null, ''] ? true : false;
 
+
   // if (!isSignedIn) {
   //   console.log(window.localStorage.getItem('token'))
+
+ // let isSignedIn = true//window.localStorage.getItem('token') in [null, ''] ? true : false;  
+
 
   //   return (
   //     <div>
