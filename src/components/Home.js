@@ -58,14 +58,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "0",
     borderRadius: "30px",
   },
-  // inputWithSearchIcon: {
-  //   position: "relative",
-  // },
-  // searchIcon: {
-  //   position: "absolute",
-  //   left: "540px",
-  //   top: "61px",
-  // },
 }));
 
 export default function Home() {
@@ -88,7 +80,6 @@ export default function Home() {
       <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}>
         <form action="">
           <input className={classes.searchBar} type="text" />
-
           <Button
             type="submit"
             className={classes.submitButton}
