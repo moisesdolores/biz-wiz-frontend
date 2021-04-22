@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Fade,
-  Grow,
-  makeStyles,
-  TextField,
-  InputAdornment,
-} from "@material-ui/core";
+import { Button, Fade, Grow, makeStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
