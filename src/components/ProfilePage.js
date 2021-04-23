@@ -4,6 +4,8 @@ import PostCard from "./PostCards";
 import DrawerForProfile from "./DrawerForProfile";
 import { apiURL, token } from "../services/config";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+const loggedInID = jwt_decode(window.localStorage.getItem("token"));
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -11,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfilePage() {
-  const id = 18; //window.localStorage.getItem("business_id");
-  console.log(id);
+  const id = 1; //window.localStorage.getItem("business_id");
+
   const handleLoad = () => {
     try {
       return axios
@@ -24,9 +26,7 @@ export default function ProfilePage() {
           },
         })
         .then((res) => {
-          console.log("res: ", res);
           if (res.data) {
-            console.log(res.data);
             setPosts(res.data);
             return res.data;
           }
@@ -37,12 +37,12 @@ export default function ProfilePage() {
   };
 
   const classes = useStyles();
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     handleLoad();
-    console.log(posts);
-  }, []);
+  }, [posts]);
 
   return (
     <div>
