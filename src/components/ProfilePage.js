@@ -6,6 +6,7 @@ import { apiURL, token } from "../services/config";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 const loggedInID = jwt_decode(window.localStorage.getItem("token"));
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -13,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfilePage() {
+
   const id = 1; //window.localStorage.getItem("business_id");
+
 
   const handleLoad = () => {
     try {
@@ -26,6 +29,7 @@ export default function ProfilePage() {
           },
         })
         .then((res) => {
+
           if (res.data) {
             setPosts(res.data);
             return res.data;
@@ -37,6 +41,12 @@ export default function ProfilePage() {
   };
 
   const classes = useStyles();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    handleLoad();
+    console.log(posts);
+  }, []);
 
   const [posts, setPosts] = useState([]);
 
