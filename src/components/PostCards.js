@@ -60,6 +60,7 @@ export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
   const [comments, setComments] = useState([]);
   const [postComment, setPostComment] = useState("");
 
+
   useEffect(() => {
     handleLoadComments();
   }, []);

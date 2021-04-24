@@ -50,7 +50,9 @@ export default function ProfilePage({ setLoggedIn }) {
 
   useEffect(() => {
     handleLoad();
+
   }, []);
+
 
   return (
     <div>
