@@ -14,9 +14,8 @@ import React, { useState, useEffect } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { apiURL, token } from "../services/config";
 import axios from "axios";
-import handleLoad from "./ProfilePage";
-
 import clsx from "clsx";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -34,17 +33,20 @@ const useStyles = makeStyles((theme) => ({
   // },
 }));
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
   const classes = useStyles();
+  const history = useHistory();
   const [expanded, setExpanded] = React.useState(false);
   const [comments, setComments] = useState([]);
+
   useEffect(() => {
     handleLoadComments();
   }, []);
 
   const handleDelete = (e) => {
     console.log("post id", post.id);
-    console.log("event id", e.target);
+    console.log("event id", e.target.value);
+
     try {
       console.log(post.id);
       return axios
@@ -55,10 +57,11 @@ export default function PostCard({ post }) {
             Authorization: `Bearer ${window.localStorage.getItem("token")}`,
           },
         })
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) {
-          }
+        .then(() => {
+          console.log(typeof setIsPostChanged);
+          console.log("first: ", isPostChanged);
+          setIsPostChanged(!isPostChanged);
+          console.log("second: ", isPostChanged);
         });
     } catch (error) {
       console.log(error.message);

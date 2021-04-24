@@ -1,9 +1,17 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { apiURL, token } from "./config";
 
 export const register = (userInfo) => {
   console.log("USER INFO: ", userInfo);
   axios
+=======
+import { apiURL } from "./config";
+
+export const register = (userInfo) => {
+  console.log("USER INFO: ", userInfo);
+  return axios
+>>>>>>> 46b36a5a35c025fce966273bf0a5331ccfdc43b7
     .post(`${apiURL}business/register`, userInfo, {
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -15,7 +23,7 @@ export const register = (userInfo) => {
       if (res.data.token) {
         console.log("possible token: ", res.data.token);
         window.localStorage.setItem("token", res.data.token);
-        window.location.assign("/");
+        // window.location.assign("/");
       }
     });
 };
@@ -35,15 +43,12 @@ export const login = (userLogin) => {
       if (res.data.token) {
         console.log("possible token: ", res.data.token);
         window.localStorage.setItem("token", res.data.token);
-        window.location.assign("/profile/home");
+        // window.location.assign("/profile/home");
       }
     });
-  // } else {
-  //     console.log("BOOYA")
-  // }
 };
 
 export const logout = () => {
   window.localStorage.removeItem("token");
-  window.location.assign("/");
+  // window.location.assign("/");
 };

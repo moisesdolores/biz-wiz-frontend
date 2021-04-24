@@ -1,6 +1,4 @@
-// import { Button, Form } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import BusinessPage from "./Business.js";
+// import BusinessPage from "./Business.js";
 import { login } from "../services/auth.js";
 import { useFormFields } from "../lib/customHooks";
 import {
@@ -16,9 +14,8 @@ import {
 } from "@material-ui/core";
 import { AccountCircle, LockRounded } from "@material-ui/icons";
 import { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage.js";
-import axios from "axios";
-import { apiURL } from "../services/config.js";
+import {Redirect, useHistory} from 'react-router';
+import ProfilePage from './ProfilePage';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,50 +58,33 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "14px",
   },
 }));
-function SignIn() {
+function SignIn({setLoggedIn}) {
   const [businessLogin, setBusinessLogin] = useFormFields({
     user_name: "",
     password: "",
   });
   // const [loggedInBusinessId, setLoggedInBusinessID] = useState();
 
+  const history = useHistory();
+
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log("1");
-    try {
-      return axios
-        .post(`${apiURL}business/login`, businessLogin, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          console.log("res: ", res);
-          if (res.data.token) {
-            // setLoggedInBusinessID(res.data["business_id"]);
-            console.log(res.data["business_id"]);
-            window.localStorage.setItem("business_id", res.data["business_id"]);
-            console.log(window.localStorage.getItem("business_id"));
-            console.log("possible token: ", res.data.token);
-            window.localStorage.setItem("token", res.data.token);
-            window.location.assign("/profile/home");
-          }
-        });
-    } catch (err) {
-      console.log(err.message);
-    }
+    console.log("handleLogin default prevented");
+    login(businessLogin);
     console.log("2");
+    setLoggedIn(true)
+    history.push('/profile/home');
   };
+
   const classes = useStyles();
   const [checked, setChecked] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);
 
-  let isSignedIn = window.localStorage.getItem("token") in [null, ""]; //? false : true;
-  if (isSignedIn === false) {
-    console.log(window.localStorage.getItem("token"));
+  let isSignedOut = true //window.localStorage.getItem("token") in [null, ""]; 
+
+  if (isSignedOut) {
     return (
       <div>
         <Grid>
@@ -125,16 +105,20 @@ function SignIn() {
                     alt=""
                   />
                 </Grid>
+                <form onSubmit={handleLogin}>
                 <TextField
                   className={classes.inputUsername}
                   margin="normal"
                   label="Username"
                   placeholder="Enter Username"
+                  onChange={setBusinessLogin}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment
                         className={classes.signInIcons}
                         position="start"
+                        name="Username"
+                        value={businessLogin.user_name}
                       >
                         <AccountCircle />
                       </InputAdornment>
@@ -147,11 +131,14 @@ function SignIn() {
                   label="Password"
                   type="password"
                   placeholder="Enter Password"
+                  onChange={setBusinessLogin}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment
                         className={classes.signInIcons}
                         position="start"
+                        name="Password"
+                        value={businessLogin.password}
                       >
                         <LockRounded />
                       </InputAdornment>
@@ -162,10 +149,10 @@ function SignIn() {
                   className={classes.signIn}
                   type="submit"
                   variant="contained"
-                  onClick={handleLogin}
                 >
                   Sign In
                 </Button>
+                </form>
                 <Typography variant="subtitle2" className={classes.signUp}>
                   Don't have an account? <Link href="/register">Sign Up</Link>
                 </Typography>
@@ -177,9 +164,8 @@ function SignIn() {
     );
   } else {
     return (
-      <div>
-        <ProfilePage />
-      </div>
+      <ProfilePage />
+        // <Redirect to="/profile/home" />
     );
   }
 }

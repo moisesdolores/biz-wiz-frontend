@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { makeStyles, Grid, Container } from "@material-ui/core";
 import PostCard from "./PostCards";
 import DrawerForProfile from "./DrawerForProfile";
-import { apiURL, token } from "../services/config";
+import { apiURL } from "../services/config";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
-const loggedInID = jwt_decode(window.localStorage.getItem("token"));
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -13,12 +12,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfilePage() {
-  const id = 1; //window.localStorage.getItem("business_id");
-
   const handleLoad = () => {
     try {
       return axios
-        .get(`${apiURL}business/home/posts/${id}/all`, {
+        .get(`${apiURL}business/home/posts/all`, {
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
@@ -37,6 +34,19 @@ export default function ProfilePage() {
   };
 
   const classes = useStyles();
+  const [posts, setPosts] = useState([]);
+  const [isPostChanged, setIsPostChanged] = useState(false);
+
+  useEffect(() => {
+    handleLoad();
+    // console.log(posts);
+    // console.log("initial", isPostChanged)
+
+    if (isPostChanged) {
+      setIsPostChanged(!isPostChanged);
+      // console.log("changed", isPostChanged)
+    }
+  }, [isPostChanged]);
 
   const [posts, setPosts] = useState([]);
 
@@ -61,7 +71,11 @@ export default function ProfilePage() {
               spacing={3}
               className={classes.cards}
             >
-              <PostCard post={ele} />
+              <PostCard
+                post={ele}
+                setIsPostChanged={setIsPostChanged}
+                isPostChanged={isPostChanged}
+              />
             </Grid>
           ))}
         </Grid>
