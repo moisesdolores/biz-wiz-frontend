@@ -70,7 +70,7 @@ function SignIn({ setLoggedIn }) {
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log("handleLogin default prevented");
-    await login(businessLogin);
+    await login(test);
     console.log("2");
     setLoggedIn(true);
     history.push("/profile/home");
@@ -111,7 +111,7 @@ function SignIn({ setLoggedIn }) {
                     margin="normal"
                     label="Username"
                     placeholder="Enter Username"
-                    onChange={setBusinessLogin}
+                    // onChange={setBusinessLogin}
                     fullWidth
                     InputProps={{
                       startAdornment: (

@@ -62,7 +62,11 @@ export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
 
   useEffect(() => {
     handleLoadComments();
-  }, []);
+    console.log("business id", post.business_id);
+    if (isPostChanged) {
+      setIsPostChanged(!isPostChanged);
+    }
+  }, [isPostChanged]);
 
   const handlePostComment = (e) => {
     e.preventDefault();
