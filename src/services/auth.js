@@ -1,17 +1,9 @@
 import axios from "axios";
-<<<<<<< HEAD
-import { apiURL, token } from "./config";
-
-export const register = (userInfo) => {
-  console.log("USER INFO: ", userInfo);
-  axios
-=======
 import { apiURL } from "./config";
 
 export const register = (userInfo) => {
   console.log("USER INFO: ", userInfo);
   return axios
->>>>>>> 46b36a5a35c025fce966273bf0a5331ccfdc43b7
     .post(`${apiURL}business/register`, userInfo, {
       headers: {
         "Access-Control-Allow-Origin": "*",
