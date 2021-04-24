@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProfilePage({setLoggedIn}) {
+export default function ProfilePage({ setLoggedIn }) {
   const handleLoad = () => {
     try {
       return axios
@@ -48,8 +48,6 @@ export default function ProfilePage({setLoggedIn}) {
     }
   }, [isPostChanged]);
 
-  const [posts, setPosts] = useState([]);
-
   useEffect(() => {
     handleLoad();
   }, [posts]);
@@ -59,7 +57,7 @@ export default function ProfilePage({setLoggedIn}) {
       <Container maxWidth="md" className={classes.container}>
         <Grid container justify="flex-end">
           <Grid item>
-            <DrawerForProfile setLoggedIn={setLoggedIn}/>
+            <DrawerForProfile setLoggedIn={setLoggedIn} />
           </Grid>
 
           {posts.map((ele) => (
