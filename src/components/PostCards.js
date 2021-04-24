@@ -115,6 +115,53 @@ export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
     }
   };
 
+  const handlePostComment = (e) => {
+    e.preventDefault();
+    console.log(isPostChanged);
+    try {
+      console.log("try");
+      return axios
+        .post(
+          `${apiURL}business/posts/post/${post.id}/comment/create`,
+          {
+            content: postComment.toString(),
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(() => {
+          console.log(isPostChanged);
+          setIsPostChanged(!isPostChanged);
+          console.log(isPostChanged);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const handleCommentDelete = (id) => {
+    console.log(id);
+    try {
+      return axios
+        .delete(`${apiURL}business/posts/post/${post.id}/comment/${id}`, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
+        })
+        .then(() => {
+          setIsPostChanged(!isPostChanged);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const handleDelete = (e) => {
     console.log("post id", post.id);
     console.log("event id", e.target.value);
