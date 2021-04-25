@@ -10,6 +10,7 @@ import DrawerForProfile from "./DrawerForProfile";
 import { apiURL } from "../services/config";
 import axios from "axios";
 
+
 const useStyles = makeStyles((theme) => ({
   accountPaper: {
     padding: "20px",
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px auto",
   },
 }));
+
 
 export default function Account({ setLoggedIn }) {
   const classes = useStyles();
@@ -61,6 +63,7 @@ export default function Account({ setLoggedIn }) {
           <DrawerForProfile setLoggedIn={setLoggedIn} />
         </Grid>
         <Grid container spacing={1}>
+
           <Paper className={classes.accountPaper}>
             <Typography variant="h6" color="initial">
               First Name: {businessInfo.first_name}
@@ -92,6 +95,7 @@ export default function Account({ setLoggedIn }) {
             <Typography variant="h6" color="initial">
               Business Type: {businessInfo.business_type}
             </Typography>
+
           </Paper>
         </Grid>
       </Container>
@@ -99,16 +103,6 @@ export default function Account({ setLoggedIn }) {
   );
 }
 
-//  first_name: '',
-//     last_name: '',
-//     business_name: '',
-//     user_name: '',
-//     password: '',
-//     email: '',
-//     street_address: '',
-//     city: '',
-//     state: '',
-//     zip: '',
-//     logo: '',
-//     business_type: '',
-//     acct_type: ''
+
+
+
