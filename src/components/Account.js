@@ -39,13 +39,12 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
   },
 
-  inputField: {
-    // paddingTop: "0px",
-  },
   logo: {
     width: 200,
   },
 }));
+
+  
 
 export default function Account({ setLoggedIn }) {
   const classes = useStyles();
