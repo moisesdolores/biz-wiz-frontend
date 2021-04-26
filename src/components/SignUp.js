@@ -103,7 +103,7 @@ export default function SignUp({ setLoggedIn, loggedIn }) {
                 alt=""
               />
             </Grid>
-            <form onSubmit={handleRegister}>
+            <form autoComplete="off" onSubmit={handleRegister}>
               <Grid container justify="space-around" spacing={1}>
                 <Grid item>
                   <TextField
