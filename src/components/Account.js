@@ -44,8 +44,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  
-
 export default function Account({ setLoggedIn }) {
   const classes = useStyles();
   const [isBeingEdited, setIsBeingEdited] = useState(false);
