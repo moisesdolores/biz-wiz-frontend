@@ -127,7 +127,7 @@ export default function Account({ setLoggedIn }) {
               />
             </Grid>
             <form action="" onSubmit={handleSave}>
-              <Grid container spacing={1}>
+              <Grid container justify="space-around" spacing={1}>
                 <Grid item className={classes.fields} xs={4}>
                   <Typography
                     className={classes.keys}
