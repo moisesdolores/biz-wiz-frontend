@@ -14,6 +14,7 @@ import {
   Typography,
   Link,
   Collapse,
+  Container,
 } from "@material-ui/core";
 
 import "./SignUp.css";
@@ -22,8 +23,8 @@ import { useHistory } from "react-router";
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: "20px",
-    minHeight: "630px",
-    height: "80vh",
+    minHeight: "500px",
+    height: "70vh",
     width: "100vh",
     margin: "0 auto",
   },
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     top: 20,
     marginBottom: 40,
   },
+  container: {},
 }));
 
 export default function SignUp({ setLoggedIn, loggedIn }) {
@@ -83,7 +85,7 @@ export default function SignUp({ setLoggedIn, loggedIn }) {
   }, []);
   return (
     <div>
-      <Grid>
+      <Container className={classes.container}>
         <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
           <Paper elevation={20} className={classes.paper}>
             <Grid
@@ -230,7 +232,7 @@ export default function SignUp({ setLoggedIn, loggedIn }) {
             </form>
           </Paper>
         </Collapse>
-      </Grid>
+      </Container>
     </div>
   );
 }
