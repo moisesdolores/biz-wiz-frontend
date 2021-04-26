@@ -439,29 +439,17 @@ export default function Account({ setLoggedIn }) {
                   </Typography>
                 </Grid>
               </Grid>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
               {isBeingEdited ? (
                 <div>
                   <Button disabled onClick={() => setIsBeingEdited(true)}>
                     Edit
                   </Button>
                   <Button
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
                     className={classes.accountBtn}
                     type="submit"
                     onClick={(e) => {
                       setIsSending(true);
                       handleSave(e);
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
                     }}
                   >
                     Save
@@ -469,29 +457,17 @@ export default function Account({ setLoggedIn }) {
                 </div>
               ) : (
                 <div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
                   <Button
                     className={classes.accountBtn}
                     onClick={() => setIsBeingEdited(true)}
                   >
                     Edit
                   </Button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
                   <Button disabled onClick={() => setIsBeingEdited(false)}>
                     Save
                   </Button>
                 </div>
               )}
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a17789cfc84dbf421c3b73a7865dee0fde3dc44
             </form>
           </Paper>
         </Grid>
