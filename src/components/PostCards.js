@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { apiURL } from "../services/config";
 import axios from "axios";
 import clsx from "clsx";
+import { getBusinessProfile } from "../services/auth";
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -195,6 +196,7 @@ export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
       console.log(error.message);
     }
   };
+
   useEffect(() => {
     profile();
   }, []);
@@ -231,9 +233,8 @@ export default function PostCard({ post, setIsPostChanged, isPostChanged }) {
               {comments.map((comment) => (
                 <ListItem key={comment.id}>
                   <Typography paragraph>
-                    {businessInfo.business_name}: {comment.content}
+                    {comment.business_name}: {comment.content}
                   </Typography>
-                  {/* <Typography paragraph>{comment.content}</Typography> */}
                   <IconButton onClick={() => handleCommentDelete(comment.id)}>
                     <DeleteOutlined />
                   </IconButton>
