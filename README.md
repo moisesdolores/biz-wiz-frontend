@@ -1,11 +1,12 @@
-# biz-wiz-frontend
-
-front end for the biz wiz project
+# Biz-Wiz-Frontend
+## Deployed on Netlify
+https://bizwiz.netlify.app/
+## Screenshot
+![image](https://user-images.githubusercontent.com/62561953/118166030-fd6a6d00-b3f2-11eb-8c11-564535b85c8f.png)
 
 ## Usage
 
-> Some usage instructions for getting the app up and running locally
-From within the Biz-Wiz-Frontend directory:
+To run on local machine, run command from within the Biz-Wiz-Frontend directory:
 
 ```sh
 - npm start
@@ -14,8 +15,8 @@ From within the Biz-Wiz-Frontend directory:
 ## Requirements
 
 - React
-- React Bootstrap
 - React Router Dom
+- Material-UI
 - Node 0.10.x
 
 ## Development
@@ -25,7 +26,7 @@ From within the Biz-Wiz-Frontend directory:
 From within the Biz-Wiz-Frontend directory:
 
 ```sh
-- npm install react-router-dom
-- npm install react-bootstrap bootstrap 
+- npm install react-router-dom 
 - npm install axios
+- npm install @material-ui/core
 ```

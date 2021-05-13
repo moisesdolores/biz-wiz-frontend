@@ -1,19 +1,22 @@
-import axios from "axios";
-import { useHistory, useLocation } from "react-router";
 import React, { useEffect, useState } from "react";
 import {
   Button,
   Container,
   Fade,
+  Grid,
   Grow,
   makeStyles,
-  TextField,
   Typography,
 } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+import axios from "axios";
+import { apiURL } from "../services/config";
+import { useHistory } from "react-router";
+import PostCard from "./PostCards";
 
 const useStyles = makeStyles((theme) => ({
-  rootDiv: {
-    margin: "0px auto",
+  container: {
+    display: "flex",
   },
   logo: {
     width: "400px",
@@ -40,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "44px",
-    margin: "10px auto 10px",
+    margin: "10px auto 20px",
     width: "482px",
     outline: "none",
     textIndent: "30px",
@@ -77,38 +80,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+export default function SearchContent() {
   const classes = useStyles();
-  const history = useHistory();
-  const location = useLocation();
-  const [searchInput, setSearchInput] = useState("");
-  const [results, setResults] = useState([]);
-
   const [checked, setChecked] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const history = useHistory();
+  const [searchResults, setSearchResults] = useState([]);
+  const [searched, setSearched] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [isPostChanged, setIsPostChanged] = useState(false);
   useEffect(() => {
     setChecked(true);
   }, []);
+  useEffect(() => {
+    console.log(searchResults);
+  }, [searchResults]);
+  useEffect(() => {
+    if (searched) {
+      setSearched(!searched);
+    }
+  }, [searched]);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    console.log(posts);
+    // console.log("initial", isPostChanged)
+    if (isPostChanged) {
+      setIsPostChanged(!isPostChanged);
+      // console.log("changed", isPostChanged)
+    }
+  }, [isPostChanged]);
+
+  const handleSearch = (e) => {
     e.preventDefault();
-    let businesses;
     try {
+      console.log("inside try");
       return axios
-        .get(
-          `https://biz-wiz.herokuapp.com/business/find/name/${searchInput}`,
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          console.log("home promise: ", res.data);
-          businesses = setResults(res.data);
+        .get(`${apiURL}business/find/content/?content=${searchInput}`, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
         })
-        .then(() => {
-          console.log("results state set? ", businesses);
+        .then((res) => {
+          console.log("response received");
+          // if (res.data.length === 0) {
+          //     return <div>No Results</div>
+          // } else {
+          console.log(res.data);
+          setSearchResults(res.data);
+          // }
         });
     } catch (err) {
       console.log(err.message);
@@ -116,24 +137,18 @@ export default function Home() {
   };
 
   return (
-    <Container className={classes.rootDiv}>
+    <div className="rootDiv">
       <Fade in={checked} {...(checked ? { timeout: 3000 } : {})}>
         <div className={classes.logoContainer}>
           <img
             className={classes.logo}
             src="/assets/BizWiz landing logo.PNG"
-            alt=""
+            alt="Logo of a wizard's hat over the 'B' in Biz Wiz with a wand for the 'i' in 'Wiz'"
           />
         </div>
       </Fade>
-
       <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}>
-        <form
-          action=""
-          onSubmit={() =>
-            history.push("/search-businesses", { from: searchInput })
-          }
-        >
+        <form action="" onSubmit={handleSearch}>
           <div className={classes.tagContainer}>
             <Typography variant="h4" color="initial">
               Learn. Share. Grow.
@@ -152,8 +167,10 @@ export default function Home() {
           <input
             className={classes.searchBar}
             type="text"
+            value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
+
           <Button
             type="submit"
             className={classes.submitButton}
@@ -164,6 +181,25 @@ export default function Home() {
           </Button>
         </form>
       </Grow>
-    </Container>
+      <Container maxWidth="md" className={classes.container}>
+        <Grid container justify="flex-end">
+          {searchResults.map((ele) => (
+            <Grow
+              in={checked}
+              style={{ transformOrigin: "0 0 0" }}
+              {...(checked ? { timeout: 2000 } : { timeout: 2000 })}
+            >
+              <Grid item key={ele.id} xs={8} md={10} className={classes.cards}>
+                <PostCard
+                  post={ele}
+                  setIsPostChanged={setIsPostChanged}
+                  isPostChanged={isPostChanged}
+                />
+              </Grid>
+            </Grow>
+          ))}
+        </Grid>
+      </Container>
+    </div>
   );
 }
