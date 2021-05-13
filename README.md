@@ -1,6 +1,5 @@
 # biz-wiz-frontend
-## Link
-https://bizwiz.netlify.app/
+## Link https://bizwiz.netlify.app/
 
 ![image](https://user-images.githubusercontent.com/62561953/118166030-fd6a6d00-b3f2-11eb-8c11-564535b85c8f.png)
 
