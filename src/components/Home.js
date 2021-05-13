@@ -1,7 +1,15 @@
 import axios from "axios";
 import { useHistory, useLocation } from "react-router";
 import React, { useEffect, useState } from "react";
-import { Button, Container, Fade, Grow, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Fade,
+  Grow,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   rootDiv: {
@@ -32,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     border: " 1px solid #dfe1e5",
     borderRadius: "24px",
     height: "44px",
-    margin: "40px auto 20px",
+    margin: "10px auto 10px",
     width: "482px",
     outline: "none",
     textIndent: "30px",
@@ -54,6 +62,18 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     borderWidth: "0",
     borderRadius: "30px",
+  },
+  tagContainer: {
+    padding: 0,
+    margin: 0,
+  },
+  subtitleContainer: {
+    // fontWeight: "",
+    padding: 0,
+    margin: 0,
+  },
+  subtitle: {
+    fontWeight: "bold",
   },
 }));
 
@@ -106,6 +126,7 @@ export default function Home() {
           />
         </div>
       </Fade>
+
       <Grow in={checked} {...(checked ? { timeout: 3000 } : {})}>
         <form
           action=""
@@ -113,6 +134,21 @@ export default function Home() {
             history.push("/search-businesses", { from: searchInput })
           }
         >
+          <div className={classes.tagContainer}>
+            <Typography variant="h4" color="initial">
+              Learn. Share. Grow.
+            </Typography>
+          </div>
+          <div className={classes.subtitleContainer}>
+            <Typography
+              variant="subtitle2"
+              color="initial"
+              className={classes.subtitle}
+            >
+              Leverage a community of entrepreneurs to help with your
+              businesses’ greatest questions
+            </Typography>
+          </div>
           <input
             className={classes.searchBar}
             type="text"
