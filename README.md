@@ -1,4 +1,5 @@
 # Biz-Wiz-Frontend
+Biz Wiz is an app for small business owners to come together and share ideas through forum post and comments.
 ## Deployed on Netlify
 https://bizwiz.netlify.app/
 ## Screenshot
